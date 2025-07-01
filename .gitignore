@@ -1,0 +1,8 @@
+backend/output
+backend/csv
+backend/app/api/__init__.py
+backend/app/core/__init__.py
+backend/app/services/__init__.py
+backend/app/models/__pycache__
+backend/app/models/__init__.py
+.env
