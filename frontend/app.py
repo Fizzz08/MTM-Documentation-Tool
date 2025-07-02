@@ -3,8 +3,13 @@
 import streamlit as st
 import requests
 import pandas as pd
+from dotenv import load_dotenv
+import os
 
-API_BASE_URL = "http://backend:8000/mtm"
+# Load environment variables
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env")
+
+API_BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000/mtm")  
 
 st.set_page_config(page_title="MTM Patient Dashboard", layout="wide")
 st.title("MTM Patient Dashboard")
