@@ -3,12 +3,8 @@
 import streamlit as st
 import requests
 import pandas as pd
-from dotenv import load_dotenv
-from pathlib import Path
 import os
 
-# Load environment variables
-load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env")
 
 API_BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000/mtm")  
 
