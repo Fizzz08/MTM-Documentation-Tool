@@ -1,22 +1,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
-from dotenv import load_dotenv
-from pathlib import Path
-import snowflake.connector
 from typing import Generator
+import snowflake.connector
 
-# Load .env from root directory
-load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env")
-
-# Read environment variables
-user = os.environ["SNOWFLAKE_USER"]
-password = os.environ["SNOWFLAKE_PASSWORD"]
-account = os.environ["SNOWFLAKE_ACCOUNT"]
-warehouse = os.environ["SNOWFLAKE_WAREHOUSE"]
-database = os.environ["SNOWFLAKE_DATABASE"]
-schema = os.environ["SNOWFLAKE_SCHEMA"]
-role = os.environ["SNOWFLAKE_ROLE"]
+# Prefer os.getenv instead of crashing on missing keys
+user = os.getenv("SNOWFLAKE_USER")
+password = os.getenv("SNOWFLAKE_PASSWORD")
+account = os.getenv("SNOWFLAKE_ACCOUNT")
+warehouse = os.getenv("SNOWFLAKE_WAREHOUSE")
+database = os.getenv("SNOWFLAKE_DATABASE")
+schema = os.getenv("SNOWFLAKE_SCHEMA")
+role = os.getenv("SNOWFLAKE_ROLE")
 
 # SQLAlchemy engine for ORM
 DATABASE_URL = (
