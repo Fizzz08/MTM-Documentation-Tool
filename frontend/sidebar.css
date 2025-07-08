@@ -1,0 +1,92 @@
+/* sidebar.css */
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.sidebar-item {
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: block;
+    color: #9CA3AF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background-color: #1F2937;
+    color: white;
+}
+
+.sidebar-item.active {
+    background-color: #2563EB;
+    color: white;
+}
+
+.custom-table-wrapper {
+    position: relative;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.custom-table th,
+.custom-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.custom-table th {
+    width: 30%;
+}
+
+
+/* Force override the inline width and flex-shrink */
+section[data-testid="stSidebar"] {
+    width: 220px !important;
+    flex-shrink: 1 !important;
+    box-sizing: border-box !important;
+}
+
+/* Adjust inner content wrapper if necessary */
+section[data-testid="stSidebar"] > div:first-child {
+    width: 100% !important;
+}
+
+/* Optional: Ensure main content doesn’t overlap */
+section.main {
+    margin-left: 220px !important;
+}
+
+/* Override the sidebar header margin */
+div[data-testid="stSidebarHeader"] {
+    margin-bottom: 0rem !important;  
+}
+
+.st-emotion-cache-1w7qfeb h1 {
+    padding-top: 0rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: 0rem !important;
+}
+
+.st-emotion-cache-1ynvt59 h2 {
+    padding-top: 0rem !important;
+    padding-bottom: 0.8rem !important;
+    margin-top: 0rem !important;       
+}
+.st-emotion-cache-umot6g {
+    border-radius: 3px !important;     
+    width: 150px !important;          
+}
+
+.st-emotion-cache-1h08hrp {
+    border-radius: 3px !important;
+    width: 150px !important; /* Force width */
+}
