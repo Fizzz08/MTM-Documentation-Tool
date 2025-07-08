@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
-API_BASE_URL = "http://localhost:8000/mtm"
+API_BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000/mtm")  
 NCPDP_BASE_URL = f"{API_BASE_URL}/ncpdp/messaging"
 MESSAGING_EXPORT_URL = f"{API_BASE_URL}/messaging/all"
 
