@@ -138,7 +138,7 @@ if selected_page == "patients":
         st.warning("No patient records available.")
 
 elif selected_page == "search":
-    st.subheader("🔍 Search Patient by Transaction ID")
+    st.subheader("🔍 Search Patient by Patient ID")
     patient_id = st.text_input("Enter Patient ID")
     if patient_id:
         record = fetch_patient_by_id(patient_id)
