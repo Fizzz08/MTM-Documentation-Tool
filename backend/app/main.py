@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from app.api import mtm_routes
+from api import mtm_routes
+from api import messaging_routes
 
-app = FastAPI(title="MTM CRUD API")
-
+app = FastAPI()
 app.include_router(mtm_routes.router)
+app.include_router(messaging_routes.router)
+

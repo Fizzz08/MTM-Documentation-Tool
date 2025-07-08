@@ -3,8 +3,8 @@ from models.mtm_orm_model import MTMRecordORM as MTMRecord  # ORM model
 from dicttoxml import dicttoxml
 from xml.dom.minidom import parseString
 
-def get_record_by_id(db: Session, transaction_id: str):
-    return db.query(MTMRecord).filter(MTMRecord.TRANSACTION_ID == transaction_id).first()
+def get_record_by_id(db: Session, patient_id: str):
+    return db.query(MTMRecord).filter(MTMRecord.PATIENT_ID == patient_id).first()
 
 def get_all_records(db: Session):
     return db.query(MTMRecord).all()
@@ -17,8 +17,8 @@ def create_record(db: Session, record):
     db.refresh(orm_record)
     return orm_record
 
-def delete_record_by_id(db: Session, transaction_id: str):
-    record = db.query(MTMRecord).filter(MTMRecord.TRANSACTION_ID == transaction_id).first()
+def delete_record_by_id(db: Session, patient_id: str):
+    record = db.query(MTMRecord).filter(MTMRecord.PATIENT_ID == patient_id).first()
     if record:
         db.delete(record)
         db.commit()
@@ -71,22 +71,23 @@ def convert_record_to_dict(record):
 
 def get_all_records_as_ncpdp_xml(db: Session) -> str:
     records = db.query(MTMRecord).all()
-    print(f"✅ Found {len(records)} records in DB")
-
-    if not records:
-        print("⚠️ No records found")
-        return "<Error>No records in database</Error>"
 
     all_records_dicts = [convert_record_to_dict(rec) for rec in records]
+
     root_dict = {"Record": all_records_dicts}
+
+    # Generate raw XML bytes from dicttoxml
     xml_bytes = dicttoxml(root_dict, custom_root="MTMRequest", attr_type=False)
+
+    # Parse and pretty print with minidom
     dom = parseString(xml_bytes)
-    pretty_xml_as_str = dom.toprettyxml(indent="  ")
+    pretty_xml_as_str = dom.toprettyxml(indent="  ")  # 2 spaces indent
+
     return pretty_xml_as_str
 
 
-def get_record_as_ncpdp_xml_by_id(db: Session, transaction_id: str) -> str:
-    record = db.query(MTMRecord).filter(MTMRecord.TRANSACTION_ID == transaction_id).first()
+def get_record_as_ncpdp_xml_by_id(db: Session, patient_id: str) -> str:
+    record = db.query(MTMRecord).filter(MTMRecord.PATIENT_ID == patient_id).first()
 
     if not record:
         return "<Error>Record not found</Error>"
