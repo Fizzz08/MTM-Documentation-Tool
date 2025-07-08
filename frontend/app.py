@@ -170,7 +170,7 @@ elif selected_page == "demographics":
         with col1:
             key_patient_id = st.text_input("Enter Patient ID", key="demo_pid")
         with col2:
-            key_name = st.text_input("Enter Key (e.g., DOB, ZIP)", key="demo_key")
+            key_name = st.text_input("Enter Key (e.g., AM20, PAT)", key="demo_key")
         submitted = st.form_submit_button("Search")
 
     if submitted:
